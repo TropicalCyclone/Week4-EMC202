@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
             weapon.Fire();
         }
 
-        moveDirection = new Vector2(moveY, moveX).normalized;
+        moveDirection = new Vector2(moveX, moveY).normalized;
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

@@ -4,16 +4,31 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private void OnEnable()
+    {
+        Invoke("Disable", 2f);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Wall":
-                Destroy(gameObject);
+                Disable();
                 break;
             case "Enemy":
-                Destroy(gameObject);
+                Disable();
+                Destroy(collision.gameObject);
                 break;
         }
+    }
+
+    private void Disable()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
     }
 }
