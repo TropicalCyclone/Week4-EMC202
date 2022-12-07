@@ -7,25 +7,33 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Weapon weapon;
+    private float nextFire = 0.0f;
+    [SerializeField] private float fireRate = 0.0f;
 
     Vector2 moveDirection;
     Vector2 mousePosition;
 
     void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetMouseButtonDown(0))
+        nextFire += Time.deltaTime;
+
+        if (Input.GetMouseButton(0) && nextFire >= fireRate)
         {
+            nextFire = 0;
             weapon.Fire();
-        }
 
+        }
+        
         moveDirection = new Vector2(moveX, moveY).normalized;
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     }
+
 
     private void FixedUpdate()
     {
