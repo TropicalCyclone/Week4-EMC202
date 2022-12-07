@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        var enemy = collision.gameObject.GetComponentInParent<EnemyBehaviour>();    
         switch (collision.gameObject.tag)
         {
             case "Wall":
@@ -17,7 +18,7 @@ public class Bullet : MonoBehaviour
                 break;
             case "Enemy":
                 Disable();
-                Destroy(collision.gameObject);
+                enemy.TakeHit(1);
                 break;
         }
     }
