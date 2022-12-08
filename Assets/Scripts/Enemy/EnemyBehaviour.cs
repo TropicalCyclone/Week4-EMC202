@@ -20,7 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
         HitPoints = MaxHitPoints;
         healthBar.SetHealth(HitPoints, MaxHitPoints);
         Player = GameObject.FindWithTag("Player").transform;
-        
+        rb = this.GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
     {
