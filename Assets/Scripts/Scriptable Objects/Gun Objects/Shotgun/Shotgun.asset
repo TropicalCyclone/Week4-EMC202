@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shotgun
   damage: 1
-  fireRate: 300
+  fireRate: 100

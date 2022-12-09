@@ -62,7 +62,6 @@ public class Weapon : MonoBehaviour
                                     
                                     break;
                                 case 1:
-                                    obj.transform.Rotate(0f, 0f, 0f);
                                     obj.GetComponent<Rigidbody2D>().AddForce(transform.up * fireForce, ForceMode2D.Impulse);
 
                                     break;

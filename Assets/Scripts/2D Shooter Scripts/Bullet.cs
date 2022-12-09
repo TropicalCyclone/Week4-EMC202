@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private int Damage;
     private void OnEnable()
     {
         Invoke("Disable", 2f);
@@ -18,7 +19,7 @@ public class Bullet : MonoBehaviour
                 break;
             case "Enemy":
                 Disable();
-                enemy.TakeHit(1);
+                enemy.TakeHit(Damage);
                 break;
         }
     }
