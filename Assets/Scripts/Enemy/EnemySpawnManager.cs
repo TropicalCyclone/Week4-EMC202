@@ -5,19 +5,26 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private float SpawnDelay;
+    [SerializeField] private float SpawnRate = 3;
     [SerializeField] private GameObject EnemyPrefab;
     private int randomSpawnZone;
     private float SpawnPositionX, SpawnPositionY;
 
     void Start()
     {
-        StartCoroutine(EnemySpawn());
+        StartCoroutine(EnemySpawn(SpawnDelay));
     }
 
-    IEnumerator EnemySpawn()
+    IEnumerator EnemySpawn(float FirstDelay)
     {
+        float spawnCountdown = FirstDelay;
+        float spawnRateCountdown = SpawnRate;
         while (true)
         {
+            yield return null;
+            spawnCountdown -= Time.deltaTime;
+            spawnRateCountdown -= Time.deltaTime;
+
             randomSpawnZone = Random.Range(-1, 4);
 
             switch (randomSpawnZone)
@@ -39,8 +46,18 @@ public class EnemySpawnManager : MonoBehaviour
                     SpawnPositionY = Random.Range(9f, -9f);
                     break;
             }
-            Instantiate(EnemyPrefab, new Vector3(SpawnPositionX, SpawnPositionY), Quaternion.identity);
-            yield return new WaitForSeconds(SpawnDelay);
+
+            if (spawnRateCountdown < 0 && SpawnDelay > 0.1)
+            {
+                spawnRateCountdown += SpawnRate;
+                SpawnDelay -= 0.05f;
+            }
+
+            if (spawnCountdown < 0)
+            {
+                spawnCountdown += SpawnDelay;
+                Instantiate(EnemyPrefab, new Vector3(SpawnPositionX, SpawnPositionY), Quaternion.identity);
+            }
         }
         
     }

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-
+        /*
         nextFire += Time.deltaTime;
 
         if (Input.GetMouseButton(0) && nextFire >= fireRate)
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
             weapon.Fire();
 
         }
+        */
         
         moveDirection = new Vector2(moveX, moveY).normalized;
 
