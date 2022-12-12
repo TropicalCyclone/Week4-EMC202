@@ -1300,6 +1300,10 @@ PrefabInstance:
       propertyPath: pooledAmount
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3317449315551385567, guid: 989adcf4b1abacf42a7fca42547be40f, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 2109301069}
     m_RemovedComponents:
     - {fileID: 3612808173365432266, guid: 989adcf4b1abacf42a7fca42547be40f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 989adcf4b1abacf42a7fca42547be40f, type: 3}

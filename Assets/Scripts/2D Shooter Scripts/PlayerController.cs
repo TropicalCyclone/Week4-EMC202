@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float HitPoints;
-    [SerializeField] private float MaxHitPoints = 5f;
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] public float HitPoints;
+    [SerializeField] public float MaxHitPoints = 5f;
+    [SerializeField] public float moveSpeed = 5f;
+    [SerializeField] private float fireRate = 0.0f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Weapon weapon;
     private float nextFire = 0.0f;
-    [SerializeField] private float fireRate = 0.0f;
+    public GameObject bar = GameObject.FindGameObjectWithTag("healthBar");
     public HealthBarBehaviour healthBar;
 
     Vector2 moveDirection;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         healthBar.SetHealth(HitPoints, MaxHitPoints);
         if (HitPoints <= 0)
         {
-            gameObject.SetActive(false);
+            
             PauseGame();
         }
     }
