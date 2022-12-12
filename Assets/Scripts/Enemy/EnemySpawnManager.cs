@@ -6,10 +6,10 @@ public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private float SpawnDelay;
     [SerializeField] private float SpawnRate = 3;
-    [SerializeField] private GameObject EnemyPrefab;
+    private GameObject EnemyPrefab;
+    [SerializeField] private ObjectPooler objectPooler;
     private int randomSpawnZone;
     private float SpawnPositionX, SpawnPositionY;
-
     void Start()
     {
         StartCoroutine(EnemySpawn(SpawnDelay));
@@ -55,8 +55,15 @@ public class EnemySpawnManager : MonoBehaviour
 
             if (spawnCountdown < 0)
             {
+                EnemyPrefab = objectPooler.GetPooledObject();
+                if (EnemyPrefab != null)
+                {
+                    EnemyPrefab.SetActive(true);
+                    EnemyPrefab.GetComponent<EnemyBehaviour>().ResetHitPoints();
+                    EnemyPrefab.transform.position = new Vector2(SpawnPositionX, SpawnPositionY);
+                    
+                }
                 spawnCountdown += SpawnDelay;
-                Instantiate(EnemyPrefab, new Vector3(SpawnPositionX, SpawnPositionY), Quaternion.identity);
             }
         }
         

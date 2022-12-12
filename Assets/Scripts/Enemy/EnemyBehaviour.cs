@@ -53,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (HitPoints <= 0)
         {
-            Destroy(gameObject);    
+            gameObject.SetActive(false);       
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -67,6 +67,12 @@ public class EnemyBehaviour : MonoBehaviour
             }
 
         
+    }
+
+    public void ResetHitPoints()
+    {
+        HitPoints = MaxHitPoints;
+        healthBar.SetHealth(HitPoints, MaxHitPoints);
     }
 
     private IEnumerator damageTimer()

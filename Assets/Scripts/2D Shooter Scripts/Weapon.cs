@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireForce = 20f;
     [SerializeField] GunData gunData;
+    [SerializeField] private ObjectPooler objectPooler;
     float timeSinceLastShot;
 
     public void Start()
@@ -23,7 +23,8 @@ public class Weapon : MonoBehaviour
             case "Rifle":
                 if (CanShoot())
                 {
-                    GameObject obj = ObjectPooler.current.GetPooledObject();
+                    
+                    GameObject obj = objectPooler.GetPooledObject();
                     if (obj == null)
                     {
                         return;
@@ -41,7 +42,7 @@ public class Weapon : MonoBehaviour
             case "Shotgun":
                 if (CanShoot())
                 {
-                    GameObject obj = ObjectPooler.current.GetPooledObject();
+                    GameObject obj = objectPooler.GetPooledObject();
                     if (obj == null)
                     {
                         return;
@@ -50,7 +51,7 @@ public class Weapon : MonoBehaviour
                     {
                         for (int i = 0; i <= 2; i++)
                         {
-                            obj = ObjectPooler.current.GetPooledObject();
+                            obj = objectPooler.GetPooledObject();
                             obj.SetActive(true);
                             obj.transform.SetPositionAndRotation(firePoint.position, firePoint.rotation);
                             
