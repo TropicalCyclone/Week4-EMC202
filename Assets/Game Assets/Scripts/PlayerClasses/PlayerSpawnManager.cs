@@ -5,15 +5,15 @@ using UnityEngine;
 public class PlayerSpawnManager : MonoBehaviour
 {
     [SerializeField] private PlayerClassDatabase playerClassDatabase;
-    
+    private string classID = "";
 
     private void Start()
     { 
-        Instantiate(GetPlayerClass("").PlayerModel, transform.position, transform.rotation);
+        Instantiate(SpawnPlayerClass(classID).PlayerModel, transform.position, transform.rotation);
     }
 
     // Start is called before the first frame update
-    public PlayerClass GetPlayerClass(string ID)
+    public PlayerClass SpawnPlayerClass(string ID)
     {
         for (int i = 0; i < playerClassDatabase.allClasses.Count; i++)
         {
@@ -21,6 +21,11 @@ public class PlayerSpawnManager : MonoBehaviour
             if (item.classID == ID)
                 return item;
         }
-        return GetPlayerClass("0001");
+        return SpawnPlayerClass("0001");
+    }
+
+    public void SetPlayerClass(string ID)
+    {
+        classID = ID;   
     }
 }
