@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2338535706135541909}
   - component: {fileID: 2338535706135541911}
   - component: {fileID: 2338535706135541910}
-  - component: {fileID: -4771284611590810108}
   m_Layer: 6
   m_Name: Rifle
   m_TagString: Untagged
@@ -99,27 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3b85d7bf0345947bb24b773f4f5cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7115378632070016650, guid: 7f9cebfa382778d459730e7f53599e7a, type: 3}
   firePoint: {fileID: 2338535707116414477}
   fireForce: 20
   gunData: {fileID: 11400000, guid: 2c398918b30479c4d9cce98a59d54d83, type: 2}
   objectPooler: {fileID: 1147212878808098411, guid: 989adcf4b1abacf42a7fca42547be40f, type: 3}
---- !u!114 &-4771284611590810108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2338535706135541908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c3e8d7b47348e54f96a6c5a160317d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 7115378632070016650, guid: 7f9cebfa382778d459730e7f53599e7a, type: 3}
-  pooledAmount: 30
-  willGrow: 1
-  pooledObjects: []
 --- !u!1 &2338535707116414476
 GameObject:
   m_ObjectHideFlags: 0

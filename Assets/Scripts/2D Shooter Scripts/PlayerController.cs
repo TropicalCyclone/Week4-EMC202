@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Weapon weapon;
     private float nextFire = 0.0f;
-    public GameObject bar = GameObject.FindGameObjectWithTag("healthBar");
+    
     public HealthBarBehaviour healthBar;
 
     Vector2 moveDirection;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBarBehaviour>();
         HitPoints = MaxHitPoints;
         healthBar.SetHealth(HitPoints, MaxHitPoints);
     }

@@ -5,22 +5,22 @@ using UnityEngine;
 public class PlayerSpawnManager : MonoBehaviour
 {
     [SerializeField] private PlayerClassDatabase playerClassDatabase;
+    
 
     private void Start()
-    {
-        PlayerClass playerclass = GetPlayerClass("0001");
-        if(playerclass != null)
-        Instantiate(playerclass);
+    { 
+        Instantiate(GetPlayerClass("").PlayerModel, transform.position, transform.rotation);
     }
 
     // Start is called before the first frame update
     public PlayerClass GetPlayerClass(string ID)
     {
-        foreach (PlayerClass item in playerClassDatabase.allClasses)
+        for (int i = 0; i < playerClassDatabase.allClasses.Count; i++)
         {
+            PlayerClass item = playerClassDatabase.allClasses[i];
             if (item.classID == ID)
                 return item;
         }
-        return null;
+        return GetPlayerClass("0001");
     }
 }

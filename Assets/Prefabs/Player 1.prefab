@@ -234,7 +234,8 @@ PrefabInstance:
       propertyPath: objectPooler
       value: 
       objectReference: {fileID: 1147212878808098411}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4771284611590810108, guid: 251c9d19090a56244a89bbd4ec8b0824, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 251c9d19090a56244a89bbd4ec8b0824, type: 3}
 --- !u!4 &3132289254894094397 stripped
 Transform:
