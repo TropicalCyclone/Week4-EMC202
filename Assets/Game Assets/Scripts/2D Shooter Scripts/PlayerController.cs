@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] public float HitPoints;
-    [SerializeField] public float MaxHitPoints = 5f;
     [SerializeField] public float moveSpeed = 5f;
     [SerializeField] private float fireRate = 0.0f;
     [SerializeField] private Rigidbody2D rb;
@@ -19,13 +18,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBarBehaviour>();
-        HitPoints = MaxHitPoints;
-        healthBar.SetHealth(HitPoints, MaxHitPoints);
+        healthBar = GameObject.FindWithTag("UIDisplay").GetComponent<HealthBarBehaviour>();
+        HitPoints = PlayerPrefs.GetFloat("player_HP");
+        healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
     }
     void Update()
     {
-
+     
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         /*
@@ -61,10 +60,10 @@ public class PlayerController : MonoBehaviour
     {
 
         HitPoints -= damage;
-        healthBar.SetHealth(HitPoints, MaxHitPoints);
+        healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
         if (HitPoints <= 0)
         {
-            
+            gameObject.SetActive(false);
             PauseGame();
         }
     }

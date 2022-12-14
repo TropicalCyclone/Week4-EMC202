@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float HitPoints;
     [SerializeField] private float MaxHitPoints = 5f;
     public HealthBarBehaviour healthBar;
+    public ScoreManager scoreManager;
     public float speed;
     private Transform Player;
     [SerializeField] private float moveSpeed = 2f;
@@ -19,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreManager = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
         HitPoints = MaxHitPoints;
         healthBar.SetHealth(HitPoints, MaxHitPoints);
         Player = GameObject.FindWithTag("Player").transform;
@@ -53,6 +55,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (HitPoints <= 0)
         {
+            scoreManager.AddToScore(1);
             gameObject.SetActive(false);       
         }
     }

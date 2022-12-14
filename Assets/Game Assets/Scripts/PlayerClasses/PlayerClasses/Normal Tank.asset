@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classID: 0001
   className: Normal Tank
+  HP: 10
   PlayerModel: {fileID: 1147212878808098389, guid: 989adcf4b1abacf42a7fca42547be40f, type: 3}
-  itemDesc: 
+  itemDesc: Tank with a single cannon! Higher HP but low damage
