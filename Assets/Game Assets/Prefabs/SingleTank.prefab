@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1147212878808098411}
   - component: {fileID: 1147212878808098410}
   m_Layer: 6
-  m_Name: Player
+  m_Name: SingleTank
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoints: 0
-  MaxHitPoints: 10
   moveSpeed: 5
   fireRate: 0
   rb: {fileID: 1147212878808098390}
@@ -159,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 7115378632070016650, guid: 7f9cebfa382778d459730e7f53599e7a, type: 3}
-  pooledAmount: 0
+  pooledAmount: 10
   willGrow: 1
   pooledObjects: []
 --- !u!114 &1147212878808098410

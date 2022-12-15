@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] public float HitPoints;
@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Retry();
+        }
     }
 
 
@@ -65,9 +69,14 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.SetActive(false);
             PauseGame();
+            SceneManager.LoadScene("Selection Screen");
         }
     }
 
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     void PauseGame()
     {
         Time.timeScale = 0;

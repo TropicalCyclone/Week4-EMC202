@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classID: 0002
   className: Twin Tank
-  HP: 30
+  HP: 10
   PlayerModel: {fileID: 1147212878808098389, guid: 3d1e6c5dd93b81e48aacd5a7e9f5a390, type: 3}
   itemDesc: 

@@ -6,8 +6,13 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreNumber;
-
     public void AddToScore(int amount)
+    {
+        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + amount);
+        scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));
+    }
+
+    public void Score(int amount)
     {
         PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + amount);
         scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));

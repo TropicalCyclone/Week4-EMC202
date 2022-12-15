@@ -5,14 +5,26 @@ using UnityEngine;
 public class PlayerSpawnManager : MonoBehaviour
 {
     [SerializeField] private PlayerClassDatabase playerClassDatabase;
-    
+    private GameObject CurrentPlayer;
+    private GameObject Player;
+
     private void Awake()
-    { 
-        Instantiate(SpawnPlayerClass(PlayerPrefs.GetString("player_class")).PlayerModel, transform.position, transform.rotation);
+    {
+        CurrentPlayer = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
+        if (CurrentPlayer != Player)
+        {
+            Instantiate(CurrentPlayer, transform.position, transform.rotation);
+            GameObject Player = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
+            CurrentPlayer = Player;
+        }
+        else
+        {
+            CurrentPlayer.SetActive(true);
+        }
     }
 
     // Start is called before the first frame update
-    public PlayerClass SpawnPlayerClass(string ID)
+    public PlayerClass GetPlayerModel(string ID)
     {
         for (int i = 0; i < playerClassDatabase.allClasses.Count; i++)
         {
@@ -22,6 +34,6 @@ public class PlayerSpawnManager : MonoBehaviour
                 return item;
         }
         PlayerPrefs.SetFloat("player_HP", 10);
-        return SpawnPlayerClass("0001");
+        return GetPlayerModel("0001");
     }
 }

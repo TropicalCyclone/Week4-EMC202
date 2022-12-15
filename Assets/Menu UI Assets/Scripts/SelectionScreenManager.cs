@@ -14,12 +14,12 @@ public class SelectionScreenManager : MonoBehaviour
     public void SingleTankButton()
     {
         PlayerPrefs.SetString("player_class", "0001");
-        SceneManager.LoadScene(+1);
+        SceneManager.LoadScene("Game");
     } 
     public void TwinTankButton()
     {
         PlayerPrefs.SetString("player_class","0002");
-        SceneManager.LoadScene(+1);
+        SceneManager.LoadScene("Game");
     }
 
 }
