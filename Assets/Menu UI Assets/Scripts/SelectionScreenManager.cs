@@ -18,7 +18,13 @@ public class SelectionScreenManager : MonoBehaviour
     } 
     public void TwinTankButton()
     {
-        PlayerPrefs.SetString("player_class","0002");
+        PlayerPrefs.SetString("player_class", "0002");
+        SceneManager.LoadScene("Game");
+    }
+
+    public void QuadTankButton()
+    {
+        PlayerPrefs.SetString("player_class", "0003");
         SceneManager.LoadScene("Game");
     }
 

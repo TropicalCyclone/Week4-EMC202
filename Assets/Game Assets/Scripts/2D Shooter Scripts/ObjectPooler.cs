@@ -24,16 +24,16 @@ public class ObjectPooler : MonoBehaviour
         }
         else if (current != this)
         {
-            Destroy(this.gameObject);    
+            Destroy(this.gameObject);
         }
     }
 
     void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
-        for (i = 0; i < objectDatabase.Count; i++)
-        {
-        }
+        pooledObjects = new List<GameObject>();
+        
+        
     }
 
     public GameObject GetPooledObject(PooledObject.ObjectType objectType)
@@ -45,21 +45,21 @@ public class ObjectPooler : MonoBehaviour
             if (objectDatabase[i].objectType == objectType)
             {
                 target = objectDatabase[i].go;
-                foreach (var pooledObject in pooledObjects)
+
+                foreach (GameObject pooledObject in pooledObjects)
                 {
-                    if (!pooledObject.activeInHierarchy && pooledObject == objectDatabase[i].go)
+                    if (!pooledObject.activeInHierarchy && pooledObject.tag == objectDatabase[i].go.tag)
                     {
-                        Debug.Log("found object");
                         return pooledObject;
+
                     }
                 }
                 
-                Debug.Log("Cant find object");
                 if (objectDatabase[i].willGrow)
                 {
                     GameObject obj = Instantiate(target, this.transform);
-                    obj.SetActive(false);
                     pooledObjects.Add(obj);
+                    obj.SetActive(false);
                     return obj;
                 }
             }
@@ -70,6 +70,10 @@ public class ObjectPooler : MonoBehaviour
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         pooledObjects.Clear();
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
 

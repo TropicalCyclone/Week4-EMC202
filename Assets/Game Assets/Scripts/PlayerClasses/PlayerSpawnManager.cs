@@ -7,10 +7,10 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private PlayerClassDatabase playerClassDatabase;
     private GameObject CurrentPlayer;
     private GameObject Player;
-
+    public ScoreManager score;
     private void OnEnable()
     {
-        
+        score.ResetScore();
         CurrentPlayer = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
         if (CurrentPlayer != null && CurrentPlayer != Player)
         {

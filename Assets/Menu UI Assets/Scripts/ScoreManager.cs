@@ -22,8 +22,13 @@ public class ScoreManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            PlayerPrefs.SetInt("Score", 0);
-            scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));
+            ResetScore();
         }
+    }
+
+    public void ResetScore()
+    {
+        PlayerPrefs.SetInt("Score", 0);
+        scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));
     }
 }

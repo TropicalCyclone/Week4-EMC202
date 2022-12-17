@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float nextFire = 0.0f;
     
     public HealthBarBehaviour healthBar;
+    public ScoreManager score;
 
     Vector2 moveDirection;
     Vector2 mousePosition;
@@ -19,7 +20,9 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ResumeGame();
+
         healthBar = GameObject.FindWithTag("UIDisplay").GetComponent<HealthBarBehaviour>();
+        score = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
     }
@@ -78,6 +81,12 @@ public class PlayerController : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+    }
+
+    public void ResetScore()
+    {
+        score.ResetScore();
     }
     void PauseGame()
     {
@@ -86,6 +95,7 @@ public class PlayerController : MonoBehaviour
     void ResumeGame()
     {
         Time.timeScale = 1;
+
     }
 }
     

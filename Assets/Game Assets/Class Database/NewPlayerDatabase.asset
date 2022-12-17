@@ -15,3 +15,4 @@ MonoBehaviour:
   allClasses:
   - {fileID: 11400000, guid: c84684487d451da4999e1f4c5d50988b, type: 2}
   - {fileID: 11400000, guid: 80322224205bacc43a02350cca81ed7a, type: 2}
+  - {fileID: 11400000, guid: 6d57ed5c51c6d294d979860c25f0aa30, type: 2}
