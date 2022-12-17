@@ -87,6 +87,6 @@ public class PooledObject
     public ObjectType objectType;
     public enum ObjectType
     {
-       enemy = 0,bullet = 1
+       enemy = 0,bullet = 1,effect = 2
     }
 }

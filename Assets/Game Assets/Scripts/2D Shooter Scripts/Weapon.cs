@@ -8,9 +8,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float fireForce = 20f;
     [SerializeField] GunData gunData;
     private float timeSinceLastShot;
+    
 
     private void OnEnable()
     {
+        
         firePoint = this.transform.GetChild(0);
         PlayerShoot.shootInput += Fire;
     }

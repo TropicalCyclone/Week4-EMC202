@@ -10,7 +10,6 @@ public class PlayerSpawnManager : MonoBehaviour
     public ScoreManager score;
     private void OnEnable()
     {
-        score.ResetScore();
         CurrentPlayer = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
         if (CurrentPlayer != null && CurrentPlayer != Player)
         {

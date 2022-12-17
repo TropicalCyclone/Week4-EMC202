@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     
     public HealthBarBehaviour healthBar;
     public ScoreManager score;
+    public PauseMenuManager pause;
 
     Vector2 moveDirection;
     Vector2 mousePosition;
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ResumeGame();
-
+        pause = GameObject.FindWithTag("UIDisplay").GetComponent<PauseMenuManager>();
         healthBar = GameObject.FindWithTag("UIDisplay").GetComponent<HealthBarBehaviour>();
         score = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
         */
 
         moveDirection = new Vector2(moveX, moveY).normalized;
-
+        if(!pause.isPaused)
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetKeyDown(KeyCode.R))
