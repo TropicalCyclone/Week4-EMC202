@@ -16,8 +16,9 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection;
     Vector2 mousePosition;
 
-    private void Start()
+    private void OnEnable()
     {
+        ResumeGame();
         healthBar = GameObject.FindWithTag("UIDisplay").GetComponent<HealthBarBehaviour>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
         if (HitPoints <= 0)
         {
+
             gameObject.SetActive(false);
             PauseGame();
             SceneManager.LoadScene("Selection Screen");
@@ -80,6 +82,10 @@ public class PlayerController : MonoBehaviour
     void PauseGame()
     {
         Time.timeScale = 0;
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
     

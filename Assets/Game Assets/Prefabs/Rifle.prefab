@@ -101,7 +101,7 @@ MonoBehaviour:
   firePoint: {fileID: 2338535707116414477}
   fireForce: 20
   gunData: {fileID: 11400000, guid: 2c398918b30479c4d9cce98a59d54d83, type: 2}
-  objectPooler: {fileID: 1147212878808098411, guid: 989adcf4b1abacf42a7fca42547be40f, type: 3}
+  objectPooler: {fileID: 0}
 --- !u!1 &2338535707116414476
 GameObject:
   m_ObjectHideFlags: 0

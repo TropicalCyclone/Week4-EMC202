@@ -9,6 +9,8 @@ TagManager:
   - HealthBar
   - ScoreDisplay
   - UIDisplay
+  - SpawnManager
+  - ObjectPooler
   layers:
   - Default
   - TransparentFX

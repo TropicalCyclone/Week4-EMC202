@@ -8,19 +8,21 @@ public class PlayerSpawnManager : MonoBehaviour
     private GameObject CurrentPlayer;
     private GameObject Player;
 
-    private void Awake()
+    private void OnEnable()
     {
+        
         CurrentPlayer = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
-        if (CurrentPlayer != Player)
+        if (CurrentPlayer != null && CurrentPlayer != Player)
         {
             Instantiate(CurrentPlayer, transform.position, transform.rotation);
             GameObject Player = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
-            CurrentPlayer = Player;
         }
         else
         {
             CurrentPlayer.SetActive(true);
         }
+
+        
     }
 
     // Start is called before the first frame update

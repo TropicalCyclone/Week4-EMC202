@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3317449315551385567}
   - component: {fileID: 1147212878808098390}
   - component: {fileID: 1147212878808098388}
-  - component: {fileID: 1147212878808098411}
   - component: {fileID: 1147212878808098410}
   m_Layer: 6
   m_Name: SingleTank
@@ -145,22 +144,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1147212878808098411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147212878808098389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c3e8d7b47348e54f96a6c5a160317d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 7115378632070016650, guid: 7f9cebfa382778d459730e7f53599e7a, type: 3}
-  pooledAmount: 10
-  willGrow: 1
-  pooledObjects: []
 --- !u!114 &1147212878808098410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +214,7 @@ PrefabInstance:
     - target: {fileID: 2338535706135541910, guid: 251c9d19090a56244a89bbd4ec8b0824, type: 3}
       propertyPath: objectPooler
       value: 
-      objectReference: {fileID: 1147212878808098411}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251c9d19090a56244a89bbd4ec8b0824, type: 3}
 --- !u!114 &3431635014096396632 stripped

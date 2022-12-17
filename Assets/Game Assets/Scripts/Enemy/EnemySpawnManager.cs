@@ -7,7 +7,6 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] private float SpawnDelay;
     [SerializeField] private float SpawnRate = 3;
     private GameObject EnemyPrefab;
-    [SerializeField] private ObjectPooler objectPooler;
     private int randomSpawnZone;
     private float SpawnPositionX, SpawnPositionY;
     void Start()
@@ -55,7 +54,7 @@ public class EnemySpawnManager : MonoBehaviour
 
             if (spawnCountdown < 0)
             {
-                EnemyPrefab = objectPooler.GetPooledObject();
+                EnemyPrefab = ObjectPooler.current.GetPooledObject(PooledObject.ObjectType.enemy);
                 if (EnemyPrefab != null)
                 {
                     EnemyPrefab.SetActive(true);

@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     private bool canTakeDamage = true;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         scoreManager = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
         HitPoints = MaxHitPoints;
