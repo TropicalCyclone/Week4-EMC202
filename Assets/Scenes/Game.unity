@@ -2348,6 +2348,10 @@ MonoBehaviour:
     pooledAmount: 0
     willGrow: 1
     objectType: 0
+  - go: {fileID: 3671364424208219805, guid: 86bfd453fc0c5b5468e06ac61ec1df73, type: 3}
+    pooledAmount: 0
+    willGrow: 1
+    objectType: 2
   pooledObjects: []
 --- !u!114 &2109678833
 MonoBehaviour:

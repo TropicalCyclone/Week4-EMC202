@@ -11,6 +11,8 @@ TagManager:
   - UIDisplay
   - SpawnManager
   - ObjectPooler
+  - Bullet
+  - FX
   layers:
   - Default
   - TransparentFX
