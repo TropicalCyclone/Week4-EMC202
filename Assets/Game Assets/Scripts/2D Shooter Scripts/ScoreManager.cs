@@ -5,6 +5,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    
     [SerializeField] private TMP_Text scoreNumber;
     public void AddToScore(int amount)
     {

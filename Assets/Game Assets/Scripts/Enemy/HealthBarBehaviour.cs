@@ -12,11 +12,14 @@ public class HealthBarBehaviour : MonoBehaviour
     
     public void SetHealth(float health, float maxhealth)
     {
-        healthBar.gameObject.SetActive(health < maxhealth);
-        healthBar.value = health;
-        healthBar.maxValue = maxhealth;
+        if (healthBar != null)
+        {
+            healthBar.gameObject.SetActive(health < maxhealth);
+            healthBar.value = health;
+            healthBar.maxValue = maxhealth;
 
-        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(Low,High,healthBar.normalizedValue);
+            healthBar.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(Low, High, healthBar.normalizedValue);
+        }
     }
     
     void Update()

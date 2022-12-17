@@ -14,7 +14,7 @@ public class PauseMenuManager : MonoBehaviour
             if (!PauseMenu.activeSelf)
             {
                 Time.timeScale = 0f;
-                isPaused = true;
+                PlayerPrefs.SetInt("isDisabled", 1);
                 PauseMenu.gameObject.SetActive(true);
             }
             else
@@ -27,10 +27,16 @@ public class PauseMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Selection Screen");
     }
-
+    public void Restart()
+    {
+        PlayerPrefs.SetInt("isDisabled", 0);
+        Time.timeScale = 1f;
+        PauseMenu.gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void HidePauseScreen()
     {
-        isPaused = false;
+        PlayerPrefs.SetInt("isDisabled", 0);
         Time.timeScale = 1f;
         PauseMenu.gameObject.SetActive(false);
     }

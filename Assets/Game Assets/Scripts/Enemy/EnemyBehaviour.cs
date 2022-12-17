@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     private bool canTakeDamage = true;
 
     // Start is called before the first frame update
-    void OnEnable()
+    void Start()
     {
         scoreManager = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
         HitPoints = MaxHitPoints;
@@ -28,6 +28,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(rb != null)
         moveCharacter(movement);
     }
     void moveCharacter(Vector2 direction)

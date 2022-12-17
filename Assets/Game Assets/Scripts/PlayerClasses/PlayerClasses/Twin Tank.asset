@@ -16,4 +16,4 @@ MonoBehaviour:
   className: Twin Tank
   HP: 10
   PlayerModel: {fileID: 1147212878808098389, guid: 3d1e6c5dd93b81e48aacd5a7e9f5a390, type: 3}
-  itemDesc: 
+  itemDesc: "Tank with two cannons! \n\nHP: 10"

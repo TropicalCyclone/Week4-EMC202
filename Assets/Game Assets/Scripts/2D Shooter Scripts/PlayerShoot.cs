@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    private PauseMenuManager pause;
+
     public static Action shootInput;
-    private void Start()
-    {
-        pause = GameObject.FindWithTag("UIDisplay").GetComponent<PauseMenuManager>();
-    }
     void Update()
     {
-        if (!pause.isPaused)
+        if (PlayerPrefs.GetInt("isDisabled") == 0)
         {
             if (Input.GetMouseButton(0))
             {

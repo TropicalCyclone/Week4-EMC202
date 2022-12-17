@@ -13,15 +13,13 @@ public class PlayerController : MonoBehaviour
     
     public HealthBarBehaviour healthBar;
     public ScoreManager score;
-    public PauseMenuManager pause;
-
+    public bool isDisabled = false;
     Vector2 moveDirection;
     Vector2 mousePosition;
 
     private void OnEnable()
     {
         ResumeGame();
-        pause = GameObject.FindWithTag("UIDisplay").GetComponent<PauseMenuManager>();
         healthBar = GameObject.FindWithTag("UIDisplay").GetComponent<HealthBarBehaviour>();
         score = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
@@ -29,27 +27,14 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-     
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        /*
-        nextFire += Time.deltaTime;
-
-        if (Input.GetMouseButton(0) && nextFire >= fireRate)
+        if (PlayerPrefs.GetInt("isDisabled") == 0)
         {
-            nextFire = 0;
-            weapon.Fire();
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveY = Input.GetAxisRaw("Vertical");
 
-        }
-        */
+            moveDirection = new Vector2(moveX, moveY).normalized;
 
-        moveDirection = new Vector2(moveX, moveY).normalized;
-        if(!pause.isPaused)
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Retry();
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 

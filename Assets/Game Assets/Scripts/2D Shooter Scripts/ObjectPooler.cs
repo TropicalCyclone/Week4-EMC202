@@ -25,15 +25,24 @@ public class ObjectPooler : MonoBehaviour
         else if (current != this)
         {
             Destroy(this.gameObject);
+
         }
     }
 
-    void Start()
+    void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
         pooledObjects = new List<GameObject>();
-        
-        
+
+        foreach (PooledObject pooledObject in objectDatabase)
+        {
+            for (int i = 0; i < pooledObject.pooledAmount; i++)
+            {
+                GameObject obj = Instantiate(pooledObject.go);
+                pooledObjects.Add(obj);
+                obj.SetActive(false);
+            }
+        }
     }
 
     public GameObject GetPooledObject(PooledObject.ObjectType objectType)
