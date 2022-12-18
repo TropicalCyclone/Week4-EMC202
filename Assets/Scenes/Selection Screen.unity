@@ -317,7 +317,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3e8d7b47348e54f96a6c5a160317d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectDatabase: []
+  objectDatabase:
+  - go: {fileID: 2512353883132226649, guid: 650ae4098253ea84688e1b86be16a07f, type: 3}
+    pooledAmount: 100
+    willGrow: 0
+    objectType: 0
+  - go: {fileID: 7115378632070016650, guid: 7f9cebfa382778d459730e7f53599e7a, type: 3}
+    pooledAmount: 0
+    willGrow: 1
+    objectType: 1
+  - go: {fileID: 3671364424208219805, guid: 86bfd453fc0c5b5468e06ac61ec1df73, type: 3}
+    pooledAmount: 0
+    willGrow: 1
+    objectType: 2
   pooledObjects: []
 --- !u!1 &373611781
 GameObject:
