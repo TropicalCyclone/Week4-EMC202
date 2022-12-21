@@ -6,10 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] public float HitPoints;
     [SerializeField] public float moveSpeed = 5f;
-    [SerializeField] private float fireRate = 0.0f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Weapon weapon;
-    private float nextFire = 0.0f;
     
     public HealthBarBehaviour healthBar;
     public ScoreManager score;
