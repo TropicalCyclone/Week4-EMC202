@@ -51,11 +51,13 @@ public class EnemyBehaviour : MonoBehaviour
     
     public void TakeHit(float damage)
     {
+        FindObjectOfType<AudioManager>().Play("HurtEnemy");
         HitPoints -= damage;
         healthBar.SetHealth(HitPoints, MaxHitPoints);
 
         if (HitPoints <= 0)
         {
+            FindObjectOfType<AudioManager>().Play("Death");
             scoreManager.AddToScore(1);
             gameObject.SetActive(false);       
         }
@@ -67,6 +69,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (canTakeDamage && collision.gameObject.tag == "Player")
             {
                 player.TakeHit(1);
+                FindObjectOfType<AudioManager>().Play("Hurt");
                 StartCoroutine(damageTimer());
             }
 

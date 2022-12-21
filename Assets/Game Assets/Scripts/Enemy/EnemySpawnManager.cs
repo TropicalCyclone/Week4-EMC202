@@ -19,6 +19,13 @@ public class EnemySpawnManager : MonoBehaviour
         if (this != null)
         StartCoroutine(EnemySpawn(SpawnDelay));
     }
+
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         SpawnDelay = SpawnTimer;

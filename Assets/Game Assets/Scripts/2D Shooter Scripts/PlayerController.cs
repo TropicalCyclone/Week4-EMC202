@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Weapon weapon;
-    
+
+    private GameObject uiDisplay;
     public HealthBarBehaviour healthBar;
     public ScoreManager score;
     public bool isDisabled = false;
@@ -18,8 +19,9 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ResumeGame();
-        healthBar = GameObject.FindWithTag("UIDisplay").GetComponent<HealthBarBehaviour>();
-        score = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
+        uiDisplay = GameObject.FindWithTag("UIDisplay");
+        healthBar = uiDisplay.GetComponent<HealthBarBehaviour>();
+        score = uiDisplay.GetComponent<ScoreManager>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
     }
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
         if (HitPoints <= 0)
         {
-
+            FindObjectOfType<AudioManager>().Play("Death");
             gameObject.SetActive(false);
             PauseGame();
             SceneManager.LoadScene("Selection Screen");
