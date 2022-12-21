@@ -1,21 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawnManager : MonoBehaviour
 {
+    [SerializeField] private float SpawnTimer;
     [SerializeField] private float SpawnDelay;
     [SerializeField] private float SpawnRate = 3;
     private GameObject EnemyPrefab;
     private int randomSpawnZone;
     private float SpawnPositionX, SpawnPositionY;
-    void Start()
+
+
+    private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoad;
+        if (this != null)
         StartCoroutine(EnemySpawn(SpawnDelay));
     }
-
+    private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        SpawnDelay = SpawnTimer;
+    }
+  
     IEnumerator EnemySpawn(float FirstDelay)
     {
+        
         float spawnCountdown = FirstDelay;
         float spawnRateCountdown = SpawnRate;
         while (true)

@@ -28,21 +28,9 @@ public class ObjectPooler : MonoBehaviour
 
         }
     }
-
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
-        pooledObjects = new List<GameObject>();
-
-        foreach (PooledObject pooledObject in objectDatabase)
-        {
-            for (int i = 0; i < pooledObject.pooledAmount; i++)
-            {
-                GameObject obj = Instantiate(pooledObject.go);
-                pooledObjects.Add(obj);
-                obj.SetActive(false);
-            }
-        }
     }
 
     public GameObject GetPooledObject(PooledObject.ObjectType objectType)
@@ -83,6 +71,21 @@ public class ObjectPooler : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        GameObject target = null;
+        pooledObjects = new List<GameObject>();
+        for (i = 0; i < objectDatabase.Count; i++)
+        {
+            target = objectDatabase[i].go;
+
+            for (int j = 0; j < objectDatabase[i].pooledAmount; j++)
+            {
+                GameObject obj = Instantiate(target, gameObject.transform);
+                pooledObjects.Add(obj);
+                obj.SetActive(false);
+            }
+
+        }
     }
 
 
@@ -96,6 +99,6 @@ public class PooledObject
     public ObjectType objectType;
     public enum ObjectType
     {
-       enemy = 0,bullet = 1,effect = 2
+       enemy = 0,bullet = 1,effect = 2,SelectionScreen = 3
     }
 }
