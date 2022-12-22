@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     private void OnEnable()
     {
-        scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));
+        scoreNumber.SetText("0");
     }
 
     [SerializeField] private TMP_Text scoreNumber;

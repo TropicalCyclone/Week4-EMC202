@@ -8,19 +8,40 @@ public class PlayerSpawnManager : MonoBehaviour
     private GameObject CurrentPlayer;
     private GameObject Player;
     public ScoreManager score;
+    public SaveManager saveManager;
     private void OnEnable()
     {
-        CurrentPlayer = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
-        if (CurrentPlayer != null && CurrentPlayer != Player)
+        if (PlayerPrefs.GetInt("Continue") == 0)
         {
-            Instantiate(CurrentPlayer, transform.position, transform.rotation);
-            GameObject Player = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
+            PlayerPrefs.SetInt("Score", 0);
+            CurrentPlayer = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
+            if (CurrentPlayer != null && CurrentPlayer != Player)
+            {
+                Instantiate(CurrentPlayer, transform.position, transform.rotation);
+                GameObject Player = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
+            }
+            else
+            {
+                CurrentPlayer.SetActive(true);
+            }
         }
         else
         {
-            CurrentPlayer.SetActive(true);
-        }
+            saveManager.Load();
+            CurrentPlayer = GetPlayerModel(saveManager._localPlayerData.playerID).PlayerModel;
+            PlayerPrefs.SetFloat("player_HP", saveManager._localPlayerData.HitPoints);
+            PlayerPrefs.SetInt("Score", saveManager._localPlayerData.Score);
 
+            if (CurrentPlayer != null && CurrentPlayer != Player)
+            {
+                Instantiate(CurrentPlayer, new Vector3(saveManager._localPlayerData.position[0], saveManager._localPlayerData.position[1], saveManager._localPlayerData.position[2]), transform.rotation);
+                GameObject Player = GetPlayerModel(PlayerPrefs.GetString("player_class")).PlayerModel;
+            }
+            else
+            {
+                CurrentPlayer.SetActive(true);
+            }
+        }
         
     }
 

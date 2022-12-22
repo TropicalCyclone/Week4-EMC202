@@ -7,7 +7,7 @@ public class SaveManager : MonoBehaviour
 {
     [SerializeField] private PlayerData _playerData;
 
-    private PlayerData _localPlayerData;
+    public PlayerData _localPlayerData;
 
     private const string SAVE_DATA_KEY = "playerData";
 
@@ -22,8 +22,18 @@ public class SaveManager : MonoBehaviour
         Debug.Log(playerData);
     }
 
-    private void Load()
+    public void Load()
     {
-
+        if (PlayerPrefs.HasKey(SAVE_DATA_KEY))
+        {
+            var jsonToConvert = PlayerPrefs.GetString(SAVE_DATA_KEY); 
+            _localPlayerData = JsonConvert.DeserializeObject<PlayerData>(jsonToConvert);
+        }
+        else
+        {
+            var playerData = new PlayerData();
+            var data = JsonConvert.SerializeObject(playerData);
+            PlayerPrefs.SetString(SAVE_DATA_KEY, data);
+        }
     }
 }
