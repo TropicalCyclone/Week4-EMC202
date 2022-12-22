@@ -26,6 +26,10 @@ public class PauseMenuManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("Selection Screen");
+        FindObjectOfType<SaveManager>().Save(FindObjectOfType<PlayerController>().GetComponent<PlayerController>(),
+            FindObjectOfType<EnemySpawnManager>().GetComponent<EnemySpawnManager>(),
+            FindObjectOfType<ScoreManager>().GetComponent<ScoreManager>());
+
     }
     public void Restart()
     {

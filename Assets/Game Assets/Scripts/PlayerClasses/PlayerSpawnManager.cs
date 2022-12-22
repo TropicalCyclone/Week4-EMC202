@@ -27,12 +27,14 @@ public class PlayerSpawnManager : MonoBehaviour
     // Start is called before the first frame update
     public PlayerClass GetPlayerModel(string ID)
     {
-        for (int i = 0; i < playerClassDatabase.allClasses.Count; i++)
+        foreach(PlayerClass Player in playerClassDatabase.allClasses)
         {
-            PlayerPrefs.SetFloat("player_HP", playerClassDatabase.allClasses[i].HP);
-            PlayerClass item = playerClassDatabase.allClasses[i];
+            PlayerClass item = Player;
             if (item.classID == ID)
+            {
+                PlayerPrefs.SetFloat("player_HP", Player.HP);
                 return item;
+            }
         }
         PlayerPrefs.SetFloat("player_HP", 10);
         return GetPlayerModel("0001");

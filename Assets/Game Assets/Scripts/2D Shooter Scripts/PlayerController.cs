@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float HitPoints;
     [SerializeField] public float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Weapon weapon;
 
     private GameObject uiDisplay;
     private EndGameUI endUiDisplay;
@@ -31,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("isDisabled") == 0)
         {
+
             float moveX = Input.GetAxisRaw("Horizontal");
             float moveY = Input.GetAxisRaw("Vertical");
 
@@ -87,4 +87,4 @@ public class PlayerController : MonoBehaviour
 
     }
 }
-    
+

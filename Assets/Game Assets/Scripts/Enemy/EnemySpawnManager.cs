@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private float SpawnTimer;
-    [SerializeField] private float SpawnDelay;
+    [SerializeField] public float SpawnDelay;
     [SerializeField] private float SpawnRate = 3;
     private GameObject EnemyPrefab;
     private int randomSpawnZone;
