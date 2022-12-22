@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Weapon weapon;
 
     private GameObject uiDisplay;
+    private EndGameUI endUiDisplay;
     public HealthBarBehaviour healthBar;
     public ScoreManager score;
     public bool isDisabled = false;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         ResumeGame();
         uiDisplay = GameObject.FindWithTag("UIDisplay");
         healthBar = uiDisplay.GetComponent<HealthBarBehaviour>();
+        endUiDisplay = uiDisplay.GetComponent<EndGameUI>();
         score = uiDisplay.GetComponent<ScoreManager>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
@@ -59,8 +61,8 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("Death");
             gameObject.SetActive(false);
-            PauseGame();
-            SceneManager.LoadScene("Selection Screen");
+            endUiDisplay.ShowEndScreen();
+            
         }
     }
 
