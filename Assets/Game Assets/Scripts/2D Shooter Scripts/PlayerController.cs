@@ -59,7 +59,8 @@ public class PlayerController : MonoBehaviour
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
         if (HitPoints <= 0)
         {
-            FindObjectOfType<AudioManager>().Play("Death");
+            FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+            FindObjectOfType<AudioManager>().Play("FailureMusic");
             gameObject.SetActive(false);
             endUiDisplay.ShowEndScreen();
             

@@ -17,7 +17,10 @@ public class SelectionScreenManager : MonoBehaviour
        playerController = GetComponent<PlayerController>();
     }
     
-
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("HomeScreen");
+    }
 
     public void SingleTankButtonHover()
     {

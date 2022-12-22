@@ -13,12 +13,6 @@ public class ScoreManager : MonoBehaviour
         scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));
     }
 
-    public void Score(int amount)
-    {
-        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + amount);
-        scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))

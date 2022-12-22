@@ -31,6 +31,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("isDisabled", 0);
         Time.timeScale = 1f;
+        FindObjectOfType<ScoreManager>().ResetScore();
         PauseMenu.gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
