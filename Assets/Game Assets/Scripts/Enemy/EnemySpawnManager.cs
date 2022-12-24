@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private float SpawnTimer;
-    [SerializeField] private float SpawnDelay;
+    [SerializeField] public float SpawnDelay;
     [SerializeField] private float SpawnRate = 3;
     private GameObject EnemyPrefab;
     private int randomSpawnZone;
     private float SpawnPositionX, SpawnPositionY;
+    [SerializeField] private SaveManager save;
 
 
     private void OnEnable()
@@ -28,7 +29,17 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        SpawnDelay = SpawnTimer;
+        save = FindObjectOfType<SaveManager>();
+        if (PlayerPrefs.GetInt("Continue") == 1)
+        {
+            if(save != null)
+            SpawnDelay = save._localPlayerData.enemySpawnDelay;
+        }
+        else
+        {
+            SpawnDelay = SpawnTimer;
+        }
+        
     }
   
     IEnumerator EnemySpawn(float FirstDelay)

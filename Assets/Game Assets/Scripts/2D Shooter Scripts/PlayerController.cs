@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float HitPoints;
     [SerializeField] public float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Weapon weapon;
 
     private GameObject uiDisplay;
     private EndGameUI endUiDisplay;
@@ -26,11 +25,18 @@ public class PlayerController : MonoBehaviour
         score = uiDisplay.GetComponent<ScoreManager>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
+        Actions.OnPlayerDamaged += TakeHit;
+    }
+
+    private void OnDisable()
+    {
+        Actions.OnPlayerDamaged -= TakeHit;
     }
     void Update()
     {
         if (PlayerPrefs.GetInt("isDisabled") == 0)
         {
+
             float moveX = Input.GetAxisRaw("Horizontal");
             float moveY = Input.GetAxisRaw("Vertical");
 
@@ -59,7 +65,8 @@ public class PlayerController : MonoBehaviour
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
         if (HitPoints <= 0)
         {
-            FindObjectOfType<AudioManager>().Play("Death");
+            FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+            FindObjectOfType<AudioManager>().Play("FailureMusic");
             gameObject.SetActive(false);
             endUiDisplay.ShowEndScreen();
             
@@ -86,4 +93,4 @@ public class PlayerController : MonoBehaviour
 
     }
 }
-    
+

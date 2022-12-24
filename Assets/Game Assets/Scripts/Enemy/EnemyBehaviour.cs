@@ -6,8 +6,9 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private float HitPoints;
     [SerializeField] private float MaxHitPoints = 5f;
+    [SerializeField] public int ScoreWhenKilled = 1;
+    [SerializeField] public float Enemydamage = 1;
     public HealthBarBehaviour healthBar;
-    public ScoreManager scoreManager;
     public float speed;
     private Transform Player;
     [SerializeField] private float moveSpeed = 2f;
@@ -20,10 +21,9 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreManager = GameObject.FindWithTag("UIDisplay").GetComponent<ScoreManager>();
         HitPoints = MaxHitPoints;
         healthBar.SetHealth(HitPoints, MaxHitPoints);
-        Player = GameObject.FindWithTag("Player").transform;
+        Player = GameObject.FindWithTag("Player")?.transform;
         rb = this.GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
@@ -58,17 +58,15 @@ public class EnemyBehaviour : MonoBehaviour
         if (HitPoints <= 0)
         {
             FindObjectOfType<AudioManager>().Play("Death");
-            scoreManager.AddToScore(1);
+            Actions.OnEnemyKilled(this);
             gameObject.SetActive(false);       
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        
-            var player = collision.gameObject.GetComponentInParent<PlayerController>();
             if (canTakeDamage && collision.gameObject.tag == "Player")
             {
-                player.TakeHit(1);
+                Actions.OnPlayerDamaged(Enemydamage);
                 FindObjectOfType<AudioManager>().Play("Hurt");
                 StartCoroutine(damageTimer());
             }

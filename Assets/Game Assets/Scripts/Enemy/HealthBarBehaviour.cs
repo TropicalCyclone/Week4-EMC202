@@ -9,7 +9,8 @@ public class HealthBarBehaviour : MonoBehaviour
     public Color Low;
     public Color High;
     public Vector3 Offset;
-    
+
+
     public void SetHealth(float health, float maxhealth)
     {
         if (healthBar != null)
