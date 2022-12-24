@@ -9,7 +9,7 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private TMP_Text HighscoreText;
     [SerializeField] private TMP_Text ScoreText;
     [SerializeField] private GameObject PauseMenu;
-    public bool isPaused = false;
+    public bool hasEnded = false;
 
     public void SetHighscoreText(string input)
     {
@@ -28,10 +28,11 @@ public class EndGameUI : MonoBehaviour
     }
     public void ShowEndScreen()
     {
+        hasEnded = true;
+        Actions.AchievementCheck(PlayerPrefs.GetInt("Score"), this.GetComponent<EndGameUI>());
         Time.timeScale = 0f;
         PlayerPrefs.SetInt("isDisabled", 1);
         PauseMenu.gameObject.SetActive(true);
-
         SetScoreText(PlayerPrefs.GetInt("Score").ToString());
 
         if (PlayerPrefs.GetInt("Score") > PlayerPrefs.GetInt("Highscore"))
@@ -46,11 +47,13 @@ public class EndGameUI : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
+        hasEnded = false;
         SceneManager.LoadScene("HomeScreen");
     }
 
     public void ReturnToSelect()
     {
+        hasEnded = false;
         SceneManager.LoadScene("Selection Screen");
     }
     public void Restart()

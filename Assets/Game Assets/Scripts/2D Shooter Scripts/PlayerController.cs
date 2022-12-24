@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
         score = uiDisplay.GetComponent<ScoreManager>();
         HitPoints = PlayerPrefs.GetFloat("player_HP");
         healthBar.SetHealth(HitPoints, PlayerPrefs.GetFloat("player_HP"));
+        Actions.OnPlayerDamaged += TakeHit;
+    }
+
+    private void OnDisable()
+    {
+        Actions.OnPlayerDamaged -= TakeHit;
     }
     void Update()
     {

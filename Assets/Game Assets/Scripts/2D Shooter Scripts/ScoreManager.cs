@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class ScoreManager : MonoBehaviour
 {
     private void OnEnable()
     {
         scoreNumber.SetText("0");
+        Actions.OnEnemyKilled += AddToScore;
+    }
+
+    private void OnDisable()
+    {
+        Actions.OnEnemyKilled -= AddToScore;
     }
 
     [SerializeField] private TMP_Text scoreNumber;
-    public void AddToScore(int amount)
+    public void AddToScore(EnemyBehaviour enemy)
     {
-        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + amount);
+        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + enemy.ScoreWhenKilled);
         scoreNumber.SetText("" + PlayerPrefs.GetInt("Score"));
+        Actions.AchievementCheck(PlayerPrefs.GetInt("Score"), FindObjectOfType<EndGameUI>());
     }
 
     private void Update()

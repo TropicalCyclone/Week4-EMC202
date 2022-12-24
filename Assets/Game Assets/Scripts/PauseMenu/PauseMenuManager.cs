@@ -26,9 +26,7 @@ public class PauseMenuManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("HomeScreen");
-        FindObjectOfType<SaveManager>().Save(FindObjectOfType<PlayerController>().GetComponent<PlayerController>(),
-            FindObjectOfType<EnemySpawnManager>().GetComponent<EnemySpawnManager>(),
-            FindObjectOfType<ScoreManager>().GetComponent<ScoreManager>());
+        FindObjectOfType<SaveManager>().Save(FindObjectOfType<PlayerController>(), FindObjectOfType<EnemySpawnManager>(), FindObjectOfType<ScoreManager>(), FindObjectOfType<AchievementSystem>());
         PlayerPrefs.SetInt("isDisabled", 0);
     }
     public void Restart()

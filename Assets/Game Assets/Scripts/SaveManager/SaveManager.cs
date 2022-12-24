@@ -11,9 +11,9 @@ public class SaveManager : MonoBehaviour
 
     private const string SAVE_DATA_KEY = "playerData";
 
-    public void Save(PlayerController player, EnemySpawnManager spawnManager, ScoreManager score)
+    public void Save(PlayerController player, EnemySpawnManager spawnManager, ScoreManager score,AchievementSystem achievement)
     {
-        _localPlayerData = new PlayerData(player, spawnManager, score);
+        _localPlayerData = new PlayerData(player, spawnManager, score, achievement);
         _playerData.playerID = _localPlayerData.playerID;
         var playerData = JsonConvert.SerializeObject(_localPlayerData);
         PlayerPrefs.SetString(SAVE_DATA_KEY, playerData);
